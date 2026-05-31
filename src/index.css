@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #020617;
+    color: #e2e8f0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020617;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #22d3ee33;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #22d3ee66;
+  }
+}
+
+@layer components {
+  /* Glass card utility */
+  .glass-card {
+    @apply bg-white/[0.04] border border-cyan-400/15 rounded-2xl backdrop-blur-md;
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(34,211,238,0.05), transparent 50%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, #22d3ee, #38bdf8, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow button */
+  .btn-glow {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 35px rgba(34, 211, 238, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-24 px-6 lg:px-8;
+  }
+
+  /* Section tag */
+  .section-tag {
+    @apply inline-block text-xs font-semibold tracking-widest uppercase text-cyan-400;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+}
+
+.scan-line {
+  position: absolute;
+  top: -40%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(34, 211, 238, 0.2),
+    rgba(34, 211, 238, 0.6),
+    rgba(34, 211, 238, 0.2),
+    transparent
+  );
+  filter: blur(2px);
+  animation: scanMove 2.8s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translateY(-120%);
+  }
+  100% {
+    transform: translateY(320%);
+  }
+}
